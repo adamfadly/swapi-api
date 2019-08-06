@@ -1,30 +1,18 @@
-let buttonName  = document.querySelector('#name-button')
-// let buttonMass  = document.querySelector('#planet-button')
-// let buttonStar  = document.querySelector('#star-button')
-// let people      = document.querySelector('#name')
-// let planet      = document.querySelector('#planet')
-// let star        = document.querySelector('#star')
-
 // API in global variable
 let apiURL1 = 'https://swapi.co/api/people/1' // people api to get 
-// let apiURL2 = 'https://swapi.co/api/starships/9' // planet api to get
-// let apiURL3 = 'https://swapi.co/api/planets/3' // star api to get
+let apiURL2 = 'https://swapi.co/api/planets/3' // star api to get
+let apiURL3 = 'https://swapi.co/api/starships/9' // planet api to get
 
+
+
+// API Name
+let buttonName  = document.querySelector('#name-button')
+let people      = document.querySelector('#name')
 buttonName.addEventListener ('click', getName)
-// buttonMass.addEventListener ('click', getPlanet)
-// buttonStar.addEventListener('click', getPlanet)
 
 function updateName(data) {
     people.innerText = data.name 
 }
-
-// function updatePlanet (data) {
-//     planet.innerText = data.name
-// }
-
-// function updateStarship (data) {
-
-// }
 
 function getName() {
     axios.get(apiURL1).then(function (response){
@@ -32,14 +20,39 @@ function getName() {
     })
 }
 
-// function getPlanet() {
-//     axios.get(apiURL2).then(function (response){
-//         updateMass(response.data)
-//     })
-// }
 
-// function getStarship() {
-//     axios.get(apiURL3).then(function (response){
-//         updateStarship(response.terrain)
-//     })
-// }
+
+
+
+
+let buttonPlanet    = document.querySelector('#planet-button')
+let planet          = document.querySelector('#planet')
+buttonPlanet.addEventListener ('click', getPlanet)
+
+
+function updatePlanet (data) {
+    planet.innerText = data.rotation_period
+}
+
+function getPlanet() {
+    axios.get(apiURL2).then(function (response){
+        updatePlanet(response.data)
+    })
+}
+
+
+
+let buttonStar  = document.querySelector('#star-button')
+let star        = document.querySelector('#star')
+buttonStar.addEventListener('click', getStarship)
+
+
+function updateStarship (data) {
+    star.innerText = data.consumables
+}
+function getStarship() {
+    axios.get(apiURL3).then(function (response){
+        updateStarship(response.data)
+    })
+}
+
